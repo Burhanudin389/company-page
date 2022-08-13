@@ -11,10 +11,10 @@ use Illuminate\Support\Str;
 
 class MetaDataController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         $data = MetaData::first();
-        return view('admin.metadata.index', compact(['data']));
+
+        return view('admin.metadata.index', compact('data'));
     }
 
     public function editLogo(Request $request, $id)

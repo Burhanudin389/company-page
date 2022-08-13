@@ -118,6 +118,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::where('id', $id)->delete();
+
+        $user->delete();
+
+        Alert::success('Berhasil', 'Berhasil menghapus data!');
+        return redirect()->route('user.index');
     }
 }

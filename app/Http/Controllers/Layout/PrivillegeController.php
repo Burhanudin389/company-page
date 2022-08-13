@@ -16,14 +16,7 @@ class PrivillegeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $privilleges = Privillege::orderBy('id', 'DESC')
-                        ->limit(3)
-                        ->get();
-
-        return view('admin.privillege.index', compact(['privilleges']));
-    }
+    public function index() {}
 
     /**
      * Show the form for creating a new resource.
@@ -43,14 +36,14 @@ class PrivillegeController extends Controller
      */
     public function store(Request $request)
     {
-        $iconName = Str::random(20) . '.' . $request->icon->getClientOriginalExtension();
-        $request->file('icon')->storeAs('public/uploads/privillege', $iconName);
-
         $request->validate([
             'icon' => 'required|mimes:jpg,png,svg,jpeg',
             'title' => 'required|max:25',
             'description' => 'required|max:120',
         ]);;
+
+        $iconName = Str::random(20) . '.' . $request->icon->getClientOriginalExtension();
+        $request->file('icon')->storeAs('public/uploads/privillege', $iconName);
 
         Privillege::create([
             'icon' => $iconName,
@@ -59,7 +52,7 @@ class PrivillegeController extends Controller
         ]);
 
         Alert::success('Berhasil', 'Berhasil menambah data keunggulan!');
-        return redirect()->route('privillege.index');
+        return redirect()->route('layout.homepage');
     }
 
     /**
@@ -68,10 +61,7 @@ class PrivillegeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    public function show($id) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -95,29 +85,33 @@ class PrivillegeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $privillege = Privillege::find($id)->first();
-
-        $iconName = Str::random(20) . '.' . $request->icon->getClientOriginalExtension();
-        $request->file('icon')->storeAs('public/uploads/privillege', $iconName);
-
-        if(File::exists('storage/uploads/privillege/' . $privillege->icon)) {
-            File::delete('storage/uploads/privillege/' . $privillege->icon);
-        }
-
         $request->validate([
-            'icon' => 'required|mimes:jpg,png,svg,jpeg',
+            'icon' => 'mimes:jpg,png,svg,jpeg',
             'title' => 'required|max:25',
             'description' => 'required|max:120',
         ]);
+        
+        $privillege = Privillege::find($id);
 
-        Privillege::where('id', $privillege->id)->update([
+        if($request->has('icon')) {
+            if(File::exists('storage/uploads/privillege/' . $privillege->icon)) {
+                File::delete('storage/uploads/privillege/' . $privillege->icon);
+            }
+            
+            $iconName = Str::random(20) . '.' . $request->icon->getClientOriginalExtension();
+            $request->file('icon')->storeAs('public/uploads/privillege', $iconName);
+        } else {
+            $iconName = $privillege->icon;
+        }
+
+        Privillege::where('id', $id)->update([
             'icon' => $iconName,
             'title' => $request->title,
             'description' => $request->description,
         ]);
 
         Alert::success('Berhasil', 'Berhasil mengubah data keunggulan!');
-        return redirect()->route('privillege.index');
+        return redirect()->route('layout.homepage');
     }
 
     /**
@@ -128,10 +122,14 @@ class PrivillegeController extends Controller
      */
     public function destroy($id)
     {
+        $privillege = Privillege::where('id', $id)->first();
         if(File::exists('storage/uploads/privillege/' . $privillege->icon)) {
             File::delete('storage/uploads/privillege/' . $privillege->icon);
         }
 
         Privillege::where('id', $id)->delete();
+
+        Alert::success('Berhasil', 'Berhasil menghapus data!');
+        return redirect()->route('layout.homepage');
     }
 }

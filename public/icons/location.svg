@@ -1,0 +1,20 @@
+<svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_83_105" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="7" y="7" width="41" height="41">
+<circle cx="27.3205" cy="27.3205" r="20" transform="rotate(30 27.3205 27.3205)" fill="#D9D9D9" fill-opacity="0.5"/>
+</mask>
+<g mask="url(#mask0_83_105)">
+<rect x="24.366" y="-5.56213" width="2" height="55" transform="rotate(30 24.366 -5.56213)" fill="#D9D9D9" fill-opacity="0.7"/>
+<rect x="52.0789" y="10.4379" width="2" height="55" transform="rotate(30 52.0789 10.4379)" fill="#D9D9D9" fill-opacity="0.7"/>
+<rect x="38.2224" y="2.43787" width="2" height="55" transform="rotate(30 38.2224 2.43787)" fill="#D9D9D9" fill-opacity="0.7"/>
+<rect x="31.2942" y="-1.56213" width="2" height="55" transform="rotate(30 31.2942 -1.56213)" fill="#D9D9D9" fill-opacity="0.7"/>
+<rect x="45.1506" y="6.43787" width="2" height="55" transform="rotate(30 45.1506 6.43787)" fill="#D9D9D9" fill-opacity="0.7"/>
+<rect x="27.8301" y="-3.56213" width="2" height="55" transform="rotate(30 27.8301 -3.56213)" fill="#D9D9D9" fill-opacity="0.7"/>
+<rect x="55.543" y="12.4379" width="2" height="55" transform="rotate(30 55.543 12.4379)" fill="#D9D9D9" fill-opacity="0.7"/>
+<rect x="41.6865" y="4.43787" width="2" height="55" transform="rotate(30 41.6865 4.43787)" fill="#D9D9D9" fill-opacity="0.7"/>
+<rect x="34.7583" y="0.437866" width="2" height="55" transform="rotate(30 34.7583 0.437866)" fill="#D9D9D9" fill-opacity="0.7"/>
+<rect x="48.6147" y="8.43787" width="2" height="55" transform="rotate(30 48.6147 8.43787)" fill="#D9D9D9" fill-opacity="0.7"/>
+</g>
+<circle cx="33" cy="32" r="20" fill="#D9D9D9"/>
+<path d="M32.9041 32.4932C34.334 32.4932 35.4932 31.334 35.4932 29.9041C35.4932 28.4742 34.334 27.3151 32.9041 27.3151C31.4742 27.3151 30.3151 28.4742 30.3151 29.9041C30.3151 31.334 31.4742 32.4932 32.9041 32.4932Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M32.9041 23C31.073 23 29.317 23.7274 28.0222 25.0222C26.7274 26.317 26 28.073 26 29.9041C26 31.537 26.3469 32.6054 27.2945 33.7877L32.9041 40.2604L38.5138 33.7877C39.4613 32.6054 39.8083 31.537 39.8083 29.9041C39.8083 28.073 39.0809 26.317 37.7861 25.0222C36.4913 23.7274 34.7352 23 32.9041 23V23Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

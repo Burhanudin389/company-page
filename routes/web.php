@@ -4,7 +4,11 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Layout\MetaDataController;
+use App\Http\Controllers\Layout\PartnerController;
+use App\Http\Controllers\Layout\PaymentController;
 use App\Http\Controllers\Layout\PrivillegeController;
+use App\Http\Controllers\Layout\SolutionController;
+use App\Http\Controllers\Layout\TestimoniController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,20 +32,25 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('frontend.c
 Route::middleware(['auth', 'role:admin|employee'])->group(function () {
     Route::prefix('/dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        // USERS
+        Route::resource('/users', UserController::class);
         // METADATA
-        Route::resource('/layout/metadata', MetaDataController::class)->missing(function () {
-            return redirect('/layout/metadata');
-        });
-        // PRIVILLEGE
-        Route::resource('/layout/privillege', PrivillegeController::class)->missing(function () {
-            return redirect('/layout/privillege');
-        });
+        Route::resource('/layout/metadata', MetaDataController::class);
         Route::post('/layout/metadata/logo/change/{id}', [MetaDataController::class, 'editLogo'])->name('metadata.logo');
         Route::post('/layout/metadata/favicon/change/{id}', [MetaDataController::class, 'editFavicon'])->name('metadata.favicon');
-        // USERS
-        Route::resource('/users', UserController::class)->missing(function () {
-            return redirect('/users');
-        });
+        // PRIVILLEGE
+        Route::resource('/layout/homepage/privillege', PrivillegeController::class);
+        // SOLUTIONS
+        Route::resource('/layout/homepage/solution', SolutionController::class);
+        // PAYMENT
+        Route::resource('/layout/homepage/payment', PaymentController::class);
+        // PARTNER
+        Route::resource('/layout/homepage/partner', PartnerController::class);
+        // PARTNER
+        Route::resource('/layout/homepage/testimoni', TestimoniController::class);
+
+        Route::get('/layout/homepage', [DashboardController::class, 'homepage'])->name('layout.homepage');
+        Route::get('/layout/about', [DashboardController::class, 'about'])->name('layout.about');
     }); 
 });
 

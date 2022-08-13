@@ -16,13 +16,11 @@
             font-family: 'Poppins', sans-serif;
         }
     </style>
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-    <link rel="stylesheet" href="{{ asset('build/assets/app.6404ac3b.css') }}">
-    <script src="{{ asset('build/assets/app.ab94cf8a.js') }}"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-slate-100">
     <!-- LOADER -->
-    <div id="loader" class="w-full h-screen bg-white fixed inset-0 z-50 flex items-center justify-center transition-all duration-300">
+    <div style="z-index: 99999;" id="loader" class="w-full h-screen bg-white fixed inset-0 flex items-center justify-center transition-all duration-300">
         <img src="{{ asset('img/logo.svg') }}" class="animate-bounce" alt="">
     </div>
     <!-- LOADER -->
@@ -52,7 +50,7 @@
                         <div class="flex items-center">
                             <div class="inline-block relative" x-data="{ dropdownNotification: false }">
                                 <div class="relative">
-                                    <button @click="dropdownNotification = !dropdownNotification" :class="{ 'text-purple-500 bg-slate-100' : dropdownNotification }" class="transition-all duration-300 hover:bg-slate-100 hover:text-purple-500 p-2 rounded-full">
+                                    <button @click="dropdownNotification = !dropdownNotification" :class="{ 'text-blue-500 bg-slate-100' : dropdownNotification }" class="transition-all duration-300 hover:bg-slate-100 hover:text-blue-500 p-2 rounded-full">
                                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path fill="currentColor" d="M28.707 19.293L26 16.586V13a10.014 10.014 0 0 0-9-9.95V1h-2v2.05A10.014 10.014 0 0 0 6 13v3.586l-2.707 2.707A1 1 0 0 0 3 20v3a1 1 0 0 0 1 1h7v.777a5.152 5.152 0 0 0 4.5 5.199A5.006 5.006 0 0 0 21 25v-1h7a1 1 0 0 0 1-1v-3a1 1 0 0 0-.293-.707ZM19 25a3 3 0 0 1-6 0v-1h6Zm8-3H5v-1.586l2.707-2.707A1 1 0 0 0 8 17v-4a8 8 0 0 1 16 0v4a1 1 0 0 0 .293.707L27 20.414Z"/></svg>
                                     </button>
                                     <div class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></div>
@@ -86,14 +84,14 @@
                                     <hr class="mt-2" />
                                     <li class="px-5 pt-4 pb-2 text-xs md:text-sm">
                                         <span>2 Unread notification, </span>
-                                        <a @click="dropdownNotification = false" href="#" class="text-purple-500 hover:underline">See all notification...</a>
+                                        <a @click="dropdownNotification = false" href="#" class="text-blue-500 hover:underline">See all notification...</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <!-- SEARCH --> 
                         <div x-data="{ openSearchModal : false }">
-                            <button @click="openSearchModal = true" :class="{ 'text-purple-500 bg-slate-100' : openSearchModal }" class="transition-all duration-300 hover:bg-slate-100 hover:text-purple-500 p-2 rounded-full">
+                            <button @click="openSearchModal = true" :class="{ 'text-blue-500 bg-slate-100' : openSearchModal }" class="transition-all duration-300 hover:bg-slate-100 hover:text-blue-500 p-2 rounded-full">
                                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392l.604.646l2.121-2.121l-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5s5 2.243 5 5s-2.243 5-5 5z"/></svg>
                             </button>
                             <div x-show="openSearchModal" class="w-full h-screen fixed z-50 inset-0 bg-slate-900 bg-opacity-50 p-3 cursor-pointer">
@@ -199,13 +197,9 @@
                 document.querySelector("#loader").style.visibility = "visible";
             } else {
                 // LOADED content after page is rendered : 1500ms
-                setTimeout(() => {
-                    document.querySelector("#loader").style.opacity = "0";
-                    document.querySelector("#loader").style.zIndex = "-999";
-                }, 500); // DEVELOPMENT
-                // setTimeout(() => {
-                //     document.querySelector("#loader").style.visibility = "hidden";
-                // }, 100); // DEVELOPMENT
+                document.querySelector("#loader").style.opacity = "0";
+                document.querySelector("#loader").style.zIndex = "-999";
+                
                 document.querySelector("body").style.visibility = "visible";
             }
         };

@@ -7,7 +7,7 @@
         <div class="absolute pt-10 inset-0 z-10 w-full h-full">
             <div class="max-w-screen-custom h-full px-4 mx-auto flex flex-col justify-center items-center">
                 <h1 data-aos="fade-up" data-aos-delay="100" class="text-3xl font-black max-w-md">Kontak</h1>
-                <p data-aos="fade-up" data-aos-delay="300" class="max-w-md mt-5 text-zinc-500">Punya pertanyaan khusus? Tim kami siap membantu anda</p>
+                <p data-aos="fade-up" data-aos-delay="300" class="max-w-md mx-auto text-center mt-5 text-zinc-500">Punya pertanyaan khusus? Tim kami siap membantu anda</p>
             </div>
         </div>
     </header>

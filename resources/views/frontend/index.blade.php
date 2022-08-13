@@ -45,11 +45,11 @@
     <section class="w-full pt-10 md:pt-72 bg-white">
         <div class="w-full max-w-screen-custom mx-auto px-4">
             <div class="w-full grid grid-cols-1 md:grid-cols-2">
-                <div class="w-full">
+                <div class="w-full py-8 md:py-0">
                     <h1 data-aos="fade-up" data-aos-delay="200" class="text-2xl md:text-3xl font-bold max-w-md">Pelajari solusi kami</h1>
                     <p data-aos="fade-up" data-aos-delay="400" class="max-w-md mt-5 text-zinc-500">Keunggulan Konsultansi yang akan membuat anda lebih percaya dengan kami</p>
                 </div>
-                <div class="flex justify-end w-full md:transform md:-translate-x-3">
+                <div class="flex justify-end w-full md:transform -translate-x-3">
                     <div class="relative w-full md:w-32 h-28 md:h-full">    
                         <div data-aos="fade-in" id="keunggulan-swiper-prev" class="swiper-button-prev"></div>
                         <div data-aos="fade-in" id="keunggulan-swiper-next" class="swiper-button-next transform -translate-x-5"></div>
@@ -92,7 +92,7 @@
                     {{-- ICON --}}
                 </div>
                 <div class="flex w-full transform">
-                    <div class="relative w-full md:w-32 h-28 md:transform md:-translate-x-3">    
+                    <div class="relative w-full md:w-32 h-28 md:transform -translate-x-3">    
                         <div data-aos="fade-in" id="testimonial-swiper-prev" class="swiper-button-prev"></div>
                         <div data-aos="fade-in" data-aos-delay="300" id="testimonial-swiper-next" class="swiper-button-next transform -translate-x-5"></div>
                     </div>

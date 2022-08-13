@@ -3,9 +3,9 @@
         <div class="w-full max-w-screen-custom mx-auto py-10 px-5">
             <div class="w-full h-full md:w-1/2 flex flex-col justify-center">
                 <h1 class="font-semibold uppercase text-white text-sm">Metode pembayaran</h1>
-                <div class="grid grid-cols-5 gap-5 mt-5">
+                <div class="grid grid-cols-5 gap-2 md:gap-5 mt-5">
                     @foreach ($payments as $payment)
-                        <div class="w-full bg-white px-3 h-10 flex justify-center items-center rounded-sm">
+                        <div class="w-full bg-white px-3 h-6 md:h-10 flex justify-center items-center rounded-sm">
                             <img src="{{ asset('storage/uploads/payment/'. $payment->logo) }}" class="w-full" />
                         </div>
                     @endforeach

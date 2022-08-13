@@ -4,7 +4,7 @@
             <a href="{{ route('frontend.index') }}">
                 <img src="{{ asset('storage/uploads/metadata/'. $metaData->logo) }}" class="w-40 md:w-56" alt="">
             </a>
-            <div id="mobile-menu-closer" class="opacity-0 -z-50 w-full h-screen md:hidden transition-all duration-300 fixed top-0 left-0 bg-slate-900"></div>
+            <div id="mobile-menu-closer" class="opacity-0 hidden -z-50 w-full h-screen md:hidden transition-all duration-300 fixed top-0 left-0 bg-slate-900"></div>
             <div id="mobile-menu" class="fixed transform -translate-y-full md:translate-y-0 md:relative top-0 left-0 w-full h-96 md:h-auto transition-all duration-300 z-50 flex flex-col md:flex-row md:justify-between space-y-5 md:space-y-0 px-4 pt-5 md:px-0 md:pt-0">
                 <ul class="bg-slate-900 md:bg-transparent flex flex-col space-y-5 md:flex-row md:space-y-0 sm:space-x-4 lg:space-x-8 md:justify-start md:items-center px-5 py-8 md:px-0 md:py-0 rounded-md">
                     <li @click="open = false">
@@ -88,11 +88,13 @@
     mobileMenuBtn.addEventListener('click', function() {
         mobileMenu.classList.remove('-translate-y-full')
         mobileMenuCloser.classList.replace('opacity-0', 'opacity-60')
+        mobileMenuCloser.classList.replace('hidden', 'block')
     })
     
     mobileMenuCloser.addEventListener('click', function() {
         mobileMenu.classList.add('-translate-y-full')
         mobileMenuCloser.classList.replace('opacity-60', 'opacity-0')
+        mobileMenuCloser.classList.replace('block', 'hidden')
     })
 </script>
 @endpush

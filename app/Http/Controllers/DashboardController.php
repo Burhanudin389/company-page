@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use App\Models\Contact;
 use App\Models\Partner;
-use App\Models\Payment;
 use App\Models\Privillege;
 use App\Models\Solution;
 use App\Models\Testimoni;
@@ -19,17 +20,23 @@ class DashboardController extends Controller
     {
         $privilleges = Privillege::get();
         $solutions = Solution::get();
-        $payments = Payment::get();
         $partners = Partner::get();
         $testimonis = Testimoni::get();
 
-        return view('admin.layout.homepage', compact(['privilleges', 'solutions', 'payments', 'partners', 'testimonis']));
+        return view('admin.layout.homepage', compact(['privilleges', 'solutions', 'partners', 'testimonis']));
     }
 
     public function about()
     {
-        $privilleges = Privillege::get();
+        $abouts = About::get();
 
-        return view('admin.layout.about', compact(['privilleges']));
+        return view('admin.layout.about', compact(['abouts']));
+    }
+
+    public function contact()
+    {
+        $contacts = Contact::get();
+
+        return view('admin.layout.contact', compact(['contacts']));
     }
 }

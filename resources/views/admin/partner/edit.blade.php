@@ -18,8 +18,8 @@
                 {{-- FORM --}}
                 <div class="w-full mt-5">
                     <div class="pb-3 mb-10">
-                        <p class="text-sm font-medium text-slate-500">Metode pembayaran</p>
-                        <h1 class="text-slate-900 text-xl">Edit data pembayaran</h1>
+                        <p class="text-sm font-medium text-slate-500">Partner</p>
+                        <h1 class="text-slate-900 text-xl">Edit data partner</h1>
                     </div>
                     <form action="{{ route('partner.update', $partner->id) }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-5 pb-5">
                         @csrf
@@ -37,9 +37,9 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- TITLE --}}
+                        {{-- PARTNER WEB --}}
                         <div class="relative z-0 w-full mt-5">
-                            <input value="{{ $partner->partner_name }}" placeholder="Masukkan nama pembayaran" type="text" name="partner_name" class="@error('partner_name') border-red-500 @enderror border-gray-300 block px-3 py-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 focus:placeholder:text-blue-400"/>
+                            <input value="{{ $partner->partner_name }}" placeholder="Masukkan website partner" type="text" name="partner_name" class="@error('partner_name') border-red-500 @enderror border-gray-300 block px-3 py-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 focus:placeholder:text-blue-400"/>
                             @error('partner_name')
                                 <span class="error-message text-xs italic text-red-500 mt-0.5">{{ $message }}</span>
                             @enderror

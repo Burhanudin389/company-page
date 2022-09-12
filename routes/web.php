@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Layout\AboutController;
+use App\Http\Controllers\Layout\ContactController;
 use App\Http\Controllers\Layout\MetaDataController;
 use App\Http\Controllers\Layout\PartnerController;
 use App\Http\Controllers\Layout\PaymentController;
@@ -42,15 +44,18 @@ Route::middleware(['auth', 'role:admin|employee'])->group(function () {
         Route::resource('/layout/homepage/privillege', PrivillegeController::class);
         // SOLUTIONS
         Route::resource('/layout/homepage/solution', SolutionController::class);
-        // PAYMENT
-        Route::resource('/layout/homepage/payment', PaymentController::class);
         // PARTNER
         Route::resource('/layout/homepage/partner', PartnerController::class);
-        // PARTNER
+        // TESTIMONI
         Route::resource('/layout/homepage/testimoni', TestimoniController::class);
+        // ABOUT
+        Route::resource('/layout/about', AboutController::class);
+        // CONTACT
+        Route::resource('/layout/contact', ContactController::class);
 
         Route::get('/layout/homepage', [DashboardController::class, 'homepage'])->name('layout.homepage');
         Route::get('/layout/about', [DashboardController::class, 'about'])->name('layout.about');
+        Route::get('/layout/contact', [DashboardController::class, 'contact'])->name('layout.contact');
     }); 
 });
 

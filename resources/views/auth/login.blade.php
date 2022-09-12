@@ -1,56 +1,46 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
+    <div class="w-full relative">
+        <div class="w-full max-w-screen-custom mx-auto h-screen grid grid-cols-1 lg:grid-cols-5 md:gap-x-10 lg:gap-x-20">
+            <!-- LEFT : FORM -->
+            <form action="{{ route('login') }}" method="POST" class="w-full lg:col-span-2 flex flex-col justify-center items-center space-y-5 p-5 max-w-lg mx-auto">
+                @csrf 
+                <div class="w-full mb-5">
+                    <img src="/asset/logo.svg" alt="">
+                </div>
+                <div class="w-full">
+                    <h1 class="text-lg md:text-xl font-medium">Login</h1>
+                    <p class="text-slate-500">Login to your existing account</p>
+                </div>
+                <!-- SINGLE INPUT -->
+                <div class="w-full">
+                    <label for="email" class="text-xs uppercase font-medium text-slate-400">Email</label>
+                    <input type="email" name="email" id="email" placeholder="example@email.com" class="w-full mt-1 text-sm px-5 py-3 rounded-md focus:outline-none border border-slate-300 text-slate-700 transition-all duration-300 focus:shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                </div>
+                <!-- SINGLE INPUT -->
+                <div class="w-full">
+                    <label for="password" class="text-xs uppercase font-medium text-slate-400">Password</label>
+                    <div id="input-password" class="relative text-slate-400 focus-within:text-blue-500">
+                        <input type="password" name="password" id="password" placeholder="Input your password" class="w-full mt-1 text-sm px-5 py-3 rounded-md focus:outline-none border border-slate-300 text-slate-700 transition-all duration-300 focus:shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                    </div>
+                </div>
+                <!-- CHECKBOXES -->
+                <div class="w-full flex">
+                    <input type="checkbox" name="remember" id="remember" class="cursor-pointer">
+                    <label for="remember" class="text-sm ml-2 text-slate-400 cursor-pointer">Remember me</label>
+                </div>
+                <!-- SUBMIT BUTTON -->
+                <div class="w-full flex">
+                    <button type="submit" class="w-full py-3 transition-all duration-300 bg-blue-500 hover:bg-blue-700 focus:ring-2 focus:ring-blue-300 rounded-md text-white text-sm">Login</button>
+                </div>
+                {{-- <div class="w-full">
+                    <a href="{{ route('register') }}">Daftar sekarang</a>
+                </div> --}}
+            </form>
+        </div>
+        <!-- PATTERN -->
+        <img src="/asset/img/auth-v1-pattern.svg" class="w-full h-full lg:hidden object-cover opacity-10 absolute inset-0 -z-10" alt="">
+        <div class="hidden lg:block w-3/5 h-screen overflow-hidden bg-blue-500 object-cover fixed top-0 right-0">
+            <img src="/asset/img/auth-v1-pattern.svg" class="w-full" alt="">
+        </div>
+    </div>
 </x-guest-layout>

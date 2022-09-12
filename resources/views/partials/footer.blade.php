@@ -1,15 +1,11 @@
 <footer class="w-full bg-zinc-800">
     <div class="w-full bg-zinc-900">
         <div class="w-full max-w-screen-custom mx-auto py-10 px-5">
-            <div class="w-full h-full md:w-1/2 flex flex-col justify-center">
-                <h1 class="font-semibold uppercase text-white text-sm">Metode pembayaran</h1>
-                <div class="grid grid-cols-5 gap-2 md:gap-5 mt-5">
-                    @foreach ($payments as $payment)
-                        <div class="w-full bg-white px-3 h-6 md:h-10 flex justify-center items-center rounded-sm">
-                            <img src="{{ asset('storage/uploads/payment/'. $payment->logo) }}" class="w-full" />
-                        </div>
-                    @endforeach
-                </div>
+            <div class="w-full h-full flex flex-col items-center justify-start">
+                <h1 class="text-white font-medium">Terdaftar di KEMENKEU</h1>
+                <a href="https://www.kemenkeu.go.id/" class="w-48 h-16 mt-5 flex justify-center items-center bg-white rounded-md">
+                    <img src="{{ asset('img/logo-kemenkeu.png') }}" class="w-40" alt="">
+                </a>
             </div>
         </div>
     </div>
@@ -20,23 +16,23 @@
                 <div class="w-full mb-10">
                     {{-- LOGO --}}
                     <a href="{{ route('frontend.index') }}">
-                        <img src="{{ asset('storage/uploads/metadata/'. $metaData->logo) }}" class="w-44" alt="">
+                        <img src="{{ asset('storage/uploads/metadata/'. $metaData->logo) }}" class="w-16" alt="">
                     </a>
                 </div>
                 <div class="w-full">
                     <h1 class="text-sm uppercase font-semibold text-white">Menu website</h1>
                     <ul class="text-sm mt-5 flex flex-col space-y-1">
                         <li>
-                            <a href="#" class="text-zinc-400 hover:underline">Beranda</a>
+                            <a href="{{ route('frontend.index') }}" class="text-zinc-400 hover:underline">Beranda</a>
                         </li>
                         <li>
-                            <a href="#" class="text-zinc-400 hover:underline">Tentang kami</a>
+                            <a href="{{ route('frontend.about') }}" class="text-zinc-400 hover:underline">Tentang kami</a>
                         </li>
                         <li>
-                            <a href="#" class="text-zinc-400 hover:underline">Solusi</a>
+                            <a href="{{ route('frontend.solution') }}" class="text-zinc-400 hover:underline">Solusi</a>
                         </li>
                         <li>
-                            <a href="#" class="text-zinc-400 hover:underline">Kontak</a>
+                            <a href="{{ route('frontend.contact') }}" class="text-zinc-400 hover:underline">Kontak</a>
                         </li>
                     </ul>
                 </div>
@@ -64,13 +60,10 @@
                     <h1 class="text-sm uppercase font-semibold text-white">Informasi pelanggan</h1>
                     <ul class="text-sm mt-5 flex flex-col space-y-1">
                         <li>
-                            <a href="#" class="text-zinc-400 hover:underline">Menu lain</a>
+                            <a href="#" class="text-zinc-400 hover:underline">Keamanan data</a>
                         </li>
                         <li>
-                            <a href="#" class="text-zinc-400 hover:underline">Menu lain</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-zinc-400 hover:underline">Menu lain</a>
+                            <a href="#" class="text-zinc-400 hover:underline">Keamanan transaksi</a>
                         </li>
                     </ul>
                 </div>
@@ -78,7 +71,7 @@
                     <h1 class="text-sm uppercase font-semibold text-white">Kontak developer</h1>
                     <ul class="text-sm mt-5 flex flex-col space-y-1">
                         <li>
-                            <a href="#" class="text-zinc-400 hover:underline">Menu lain</a>
+                            <a href="https://wa.me/6287828713886" target="_blank" class="text-zinc-400 hover:underline">Laporkan permasalahan</a>
                         </li>
                     </ul>
                 </div>

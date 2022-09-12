@@ -12,16 +12,19 @@
     <script src="https://unpkg.com/tippy.js@6"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif !important;
         }
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-slate-100">
     <!-- LOADER -->
+    @php
+        $metadata = DB::table('meta_data')->pluck('logo')->first();
+    @endphp
     <div style="z-index: 99999;" id="loader" class="w-full h-screen bg-white fixed inset-0 flex items-center justify-center transition-all duration-300">
-        <img src="{{ asset('img/logo.svg') }}" class="animate-bounce" alt="">
+        <img src="{{ asset('storage/uploads/metadata/'. $metadata) }}" class="animate-bounce w-16" alt="">
     </div>
     <!-- LOADER -->
     <div class="w-full flex">
@@ -47,7 +50,7 @@
                     </div>
                     <div class="flex items-center space-x-3">
                         <!-- NOTIFICATION -->
-                        <div class="flex items-center">
+                        {{-- <div class="flex items-center">
                             <div class="inline-block relative" x-data="{ dropdownNotification: false }">
                                 <div class="relative">
                                     <button @click="dropdownNotification = !dropdownNotification" :class="{ 'text-blue-500 bg-slate-100' : dropdownNotification }" class="transition-all duration-300 hover:bg-slate-100 hover:text-blue-500 p-2 rounded-full">
@@ -88,9 +91,9 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- SEARCH --> 
-                        <div x-data="{ openSearchModal : false }">
+                        {{-- <div x-data="{ openSearchModal : false }">
                             <button @click="openSearchModal = true" :class="{ 'text-blue-500 bg-slate-100' : openSearchModal }" class="transition-all duration-300 hover:bg-slate-100 hover:text-blue-500 p-2 rounded-full">
                                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392l.604.646l2.121-2.121l-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5s5 2.243 5 5s-2.243 5-5 5z"/></svg>
                             </button>
@@ -105,12 +108,18 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- USER PROFILE -->
                         <div class="flex items-center">
                             <div class="inline-block relative" x-data="{ dropdownProfile: false }">
                                 <button @click="dropdownProfile = !dropdownProfile" class="focus:outline-none shadow cursor-pointer flex border rounded-full" :class="{ 'shadow-none border-indigo-300': dropdownProfile}">
-                                    <img class="w-9 h-9 hover:ring-2 ring-slate-300 rounded-full" src="{{ asset('img/logo.svg') }}" alt="">
+                                    @if (Auth::user()->hasRole('admin'))
+                                        <img class="w-9 h-9 hover:ring-2 ring-slate-300 rounded-full" src="{{ asset('icons/admin.svg') }}" alt="">
+                                    @elseif (Auth::user()->hasRole('employee'))
+                                        <img class="w-9 h-9 hover:ring-2 ring-slate-300 rounded-full" src="{{ asset('icons/employee.svg') }}" alt="">
+                                    @else
+                                        <img class="w-9 h-9 hover:ring-2 ring-slate-300 rounded-full" src="{{ asset('icons/guest.svg') }}" alt="">
+                                    @endif
                                 </button>
                         
                                 <div @click.away="dropdownProfile = false" x-show="dropdownProfile" class="text-sm flex flex-col absolute transform origin-top-right right-0 w-72 rounded-md overflow-hidden shadow-lg mt-5"

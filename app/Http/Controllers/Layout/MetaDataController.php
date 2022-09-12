@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Layout;
 
-use Alert;
 use App\Http\Controllers\Controller;
 use App\Models\MetaData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MetaDataController extends Controller
 {

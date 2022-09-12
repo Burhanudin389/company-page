@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="flex flex-col space-y-6">
-                @include('admin.privillege.index')
+                @include('admin.about.index')
             </div>
         </div>
     </div>

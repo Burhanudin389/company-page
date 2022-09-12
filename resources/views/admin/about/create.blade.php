@@ -1,4 +1,4 @@
- @extends('layouts.dashboard')
+@extends('layouts.dashboard')
 
 @section('content')
     <div class="w-full p-3 md:p-5">
@@ -9,7 +9,7 @@
                     <div id="breadcrumbs" class="flex items-center space-x-3">
                         <a href="{{ route('dashboard') }}" class="text-sm font-medium text-blue-500 hover:underline">Beranda</a>
                         <span class="iconify" data-icon="bx:chevron-right"></span>
-                        <p class="text-sm font-medium text-slate-500">Edit data pembayaran</p>
+                        <p class="text-sm font-medium text-slate-500">Tambah data tentang kami</p>
                     </div>
                 </div>
             </div>
@@ -17,36 +17,36 @@
             <div class="w-full bg-white rounded-md p-5">
                 {{-- FORM --}}
                 <div class="w-full mt-5">
-                    <div class="pb-3 mb-10">
-                        <p class="text-sm font-medium text-slate-500">Metode pembayaran</p>
-                        <h1 class="text-slate-900 text-xl">Edit data pembayaran</h1>
+                    <div class="pb-3">
+                        <p class="text-sm font-medium text-slate-500">Tentang kami</p>
+                        <h1 class="text-slate-900 text-xl">Tambah data tentang kami</h1>
                     </div>
-                    <form action="{{ route('payment.update', $payment->id) }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-5 pb-5">
+                    <form action="{{ route('about.store') }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-5 pb-5">
                         @csrf
-                        @method('PUT')
                         {{-- ICON --}}
-                        <div class="relative z-0 w-full grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
-                            <div class="w-full flex space-x-5 items-center bg-slate-100 p-5 rounded-md">
-                                <span>Icon sekarang :</span>
-                                <img src="{{ asset('storage/uploads/payment/'. $payment->icon) }}" class="w-28 block" alt="" />
-                            </div>
-                            <div class="w-full">
-                                <input type="file" name="logo" class="@error('logo') border-red-500 @enderror border-gray-300 py-2.5 w-full md:w-1/2 text-sm text-gray-900 bg-transparent appearance-none outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 focus:placeholder:text-blue-400"/>
-                                @error('logo')
-                                    <span class="error-message text-xs italic text-red-500 mt-0.5">{{ $message }}</span>
-                                @enderror
-                            </div>
+                        <div class="relative z-0 w-full mt-5 bg-slate-100 rounded-md p-5">
+                            <input type="file" name="icon" class="@error('icon') border-red-500 @enderror border-gray-300 py-2.5 w-full md:w-1/2 text-sm text-gray-900 bg-transparent appearance-none outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 focus:placeholder:text-blue-400"/>
+                            @error('icon')
+                                <span class="error-message text-xs italic text-red-500 mt-0.5">{{ $message }}</span>
+                            @enderror
                         </div>
                         {{-- TITLE --}}
                         <div class="relative z-0 w-full mt-5">
-                            <input value="{{ $payment->bank_name }}" placeholder="Masukkan nama pembayaran" type="text" name="bank_name" class="@error('bank_name') border-red-500 @enderror border-gray-300 block px-3 py-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 focus:placeholder:text-blue-400"/>
-                            @error('bank_name')
+                            <input value="{{ old('title') }}" placeholder="Masukkan nama tentang kami" type="text" name="title" class="@error('title') border-red-500 @enderror border-gray-300 block px-3 py-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 focus:placeholder:text-blue-400"/>
+                            @error('title')
+                                <span class="error-message text-xs italic text-red-500 mt-0.5">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        {{-- DESCRIPTION --}}
+                        <div class="relative z-0 w-full mt-5">
+                            <textarea placeholder="Masukkan deskripsi tentang kami" rows="3" name="description" class="@error('description') border-red-500 @enderror border-gray-300 block px-3 py-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 focus:placeholder:text-blue-400">{{ old('description') }}</textarea>
+                            @error('description')
                                 <span class="error-message text-xs italic text-red-500 mt-0.5">{{ $message }}</span>
                             @enderror
                         </div>
                         {{-- BUTTON --}}
                         <div class="flex items-center space-x-3 mt-5">
-                            <a href="{{ route('layout.homepage') }}" class="w-36 h-11 rounded-md text-sm font-medium transition-all duration-300 bg-gradient-to-tr from-red-500 to-red-700 hover:from-red-600 hover:to-red-700 focus:ring-2 focus:ring-red-300 text-white active:text-red-300 flex justify-center items-center">
+                            <a href="{{ route('layout.about') }}" class="w-36 h-11 rounded-md text-sm font-medium transition-all duration-300 bg-gradient-to-tr from-red-500 to-red-700 hover:from-red-600 hover:to-red-700 focus:ring-2 focus:ring-red-300 text-white active:text-red-300 flex justify-center items-center">
                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg>
                                 <span class="ml-2">Batalkan</span>
                             </a>

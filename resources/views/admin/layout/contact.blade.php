@@ -11,15 +11,12 @@
                         <span class="iconify" data-icon="bx:chevron-right"></span>
                         <p class="text-sm font-medium text-slate-500">Layout</p>
                         <span class="iconify" data-icon="bx:chevron-right"></span>
-                        <p class="text-sm font-medium text-slate-500">Homepage</p>
+                        <p class="text-sm font-medium text-slate-500">Halaman kontak</p>
                     </div>
                 </div>
             </div>
             <div class="flex flex-col space-y-6">
-                @include('admin.privillege.index')
-                @include('admin.solution.index')
-                @include('admin.partner.index')
-                @include('admin.testimoni.index')
+                @include('admin.contact.index')
             </div>
         </div>
     </div>

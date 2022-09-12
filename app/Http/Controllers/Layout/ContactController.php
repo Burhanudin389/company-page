@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Layout;
 
 use App\Http\Controllers\Controller;
-use App\Models\Privillege;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class PrivillegeController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class PrivillegeController extends Controller
      */
     public function create()
     {
-        return view('admin.privillege.create');
+        return view('admin.contact.create');
     }
 
     /**
@@ -38,21 +38,23 @@ class PrivillegeController extends Controller
     {
         $request->validate([
             'icon' => 'required|mimes:jpg,png,svg,jpeg',
-            'title' => 'required|max:25',
-            'description' => 'required|max:120',
+            'name' => 'required|max:25',
+            'type' => 'required',
+            'contact' => 'required',
         ]);;
 
         $iconName = Str::random(20) . '.' . $request->icon->getClientOriginalExtension();
-        $request->file('icon')->storeAs('public/uploads/privillege', $iconName);
+        $request->file('icon')->storeAs('public/uploads/contact', $iconName);
 
-        Privillege::create([
+        Contact::create([
             'icon' => $iconName,
-            'title' => $request->title,
-            'description' => $request->description,
+            'name' => $request->name,
+            'type' => $request->type,
+            'contact' => $request->contact,
         ]);
 
-        Alert::success('Berhasil', 'Berhasil menambah data keunggulan!');
-        return redirect()->route('layout.homepage');
+        Alert::success('Berhasil', 'Berhasil menambah data kontak!');
+        return redirect()->route('layout.contact');
     }
 
     /**
@@ -61,7 +63,10 @@ class PrivillegeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {}
+    public function show($id)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -71,9 +76,9 @@ class PrivillegeController extends Controller
      */
     public function edit($id)
     {
-        $privillege = Privillege::find($id);
+        $contact = Contact::find($id);
 
-        return view('admin.privillege.edit', compact(['privillege']));
+        return view('admin.contact.edit', compact(['contact']));
     }
 
     /**
@@ -87,31 +92,33 @@ class PrivillegeController extends Controller
     {
         $request->validate([
             'icon' => 'mimes:jpg,png,svg,jpeg',
-            'title' => 'required|max:25',
-            'description' => 'required|max:120',
+            'name' => 'required|max:25',
+            'type' => 'required',
+            'contact' => 'required',
         ]);
         
-        $privillege = Privillege::find($id);
+        $contact = Contact::find($id);
 
         if($request->has('icon')) {
-            if(File::exists('storage/uploads/privillege/' . $privillege->icon)) {
-                File::delete('storage/uploads/privillege/' . $privillege->icon);
+            if(File::exists('storage/uploads/contact/' . $contact->icon)) {
+                File::delete('storage/uploads/contact/' . $contact->icon);
             }
             
             $iconName = Str::random(20) . '.' . $request->icon->getClientOriginalExtension();
-            $request->file('icon')->storeAs('public/uploads/privillege', $iconName);
+            $request->file('icon')->storeAs('public/uploads/contact', $iconName);
         } else {
-            $iconName = $privillege->icon;
+            $iconName = $contact->icon;
         }
 
-        Privillege::where('id', $id)->update([
+        Contact::where('id', $id)->update([
             'icon' => $iconName,
-            'title' => $request->title,
-            'description' => $request->description,
+            'name' => $request->name,
+            'type' => $request->type,
+            'contact' => $request->contact,
         ]);
 
-        Alert::success('Berhasil', 'Berhasil mengubah data keunggulan!');
-        return redirect()->route('layout.homepage');
+        Alert::success('Berhasil', 'Berhasil mengubah data kontak!');
+        return redirect()->route('layout.contact');
     }
 
     /**
@@ -122,14 +129,14 @@ class PrivillegeController extends Controller
      */
     public function destroy($id)
     {
-        $privillege = Privillege::where('id', $id)->first();
-        if(File::exists('storage/uploads/privillege/' . $privillege->icon)) {
-            File::delete('storage/uploads/privillege/' . $privillege->icon);
+        $contact = Contact::where('id', $id)->first();
+        if(File::exists('storage/uploads/contact/' . $contact->icon)) {
+            File::delete('storage/uploads/contact/' . $contact->icon);
         }
 
-        Privillege::where('id', $id)->delete();
+        Contact::where('id', $id)->delete();
 
         Alert::success('Berhasil', 'Berhasil menghapus data!');
-        return redirect()->route('layout.homepage');
+        return redirect()->route('layout.contact');
     }
 }

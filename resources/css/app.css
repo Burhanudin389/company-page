@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+[x-cloak] { display: none }
+
 body {
     overflow-x: hidden;
 }
@@ -216,9 +218,9 @@ span[aria-current="page"] span {
   color: rgb(59, 130, 246);
   box-shadow: 0 1px 30px #ddd;
 }
-.keunggulan-swiper .swiper-wrapper .swiper-slide.swiper-slide-active div:hover, .testimonial-swiper .swiper-wrapper .swiper-slide.swiper-slide-active div {
+/* .keunggulan-swiper .swiper-wrapper .swiper-slide.swiper-slide-active div:hover, .testimonial-swiper .swiper-wrapper .swiper-slide.swiper-slide-active div {
   background-color: rgba(59, 130, 246, .1);
-}
+} */
 
 /*  */
 .link-icon:hover svg {

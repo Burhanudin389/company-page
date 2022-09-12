@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Layout;
 
 use App\Http\Controllers\Controller;
-use App\Models\Privillege;
+use App\Models\About;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class PrivillegeController extends Controller
+class AboutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class PrivillegeController extends Controller
      */
     public function create()
     {
-        return view('admin.privillege.create');
+        return view('admin.about.create');
     }
 
     /**
@@ -43,16 +43,16 @@ class PrivillegeController extends Controller
         ]);;
 
         $iconName = Str::random(20) . '.' . $request->icon->getClientOriginalExtension();
-        $request->file('icon')->storeAs('public/uploads/privillege', $iconName);
+        $request->file('icon')->storeAs('public/uploads/about', $iconName);
 
-        Privillege::create([
+        About::create([
             'icon' => $iconName,
             'title' => $request->title,
             'description' => $request->description,
         ]);
 
-        Alert::success('Berhasil', 'Berhasil menambah data keunggulan!');
-        return redirect()->route('layout.homepage');
+        Alert::success('Berhasil', 'Berhasil menambah data tentang kami!');
+        return redirect()->route('layout.about');
     }
 
     /**
@@ -71,9 +71,9 @@ class PrivillegeController extends Controller
      */
     public function edit($id)
     {
-        $privillege = Privillege::find($id);
+        $about = About::find($id);
 
-        return view('admin.privillege.edit', compact(['privillege']));
+        return view('admin.about.edit', compact(['about']));
     }
 
     /**
@@ -91,27 +91,27 @@ class PrivillegeController extends Controller
             'description' => 'required|max:120',
         ]);
         
-        $privillege = Privillege::find($id);
+        $about = About::find($id);
 
         if($request->has('icon')) {
-            if(File::exists('storage/uploads/privillege/' . $privillege->icon)) {
-                File::delete('storage/uploads/privillege/' . $privillege->icon);
+            if(File::exists('storage/uploads/about/' . $about->icon)) {
+                File::delete('storage/uploads/about/' . $about->icon);
             }
             
             $iconName = Str::random(20) . '.' . $request->icon->getClientOriginalExtension();
-            $request->file('icon')->storeAs('public/uploads/privillege', $iconName);
+            $request->file('icon')->storeAs('public/uploads/about', $iconName);
         } else {
-            $iconName = $privillege->icon;
+            $iconName = $about->icon;
         }
 
-        Privillege::where('id', $id)->update([
+        About::where('id', $id)->update([
             'icon' => $iconName,
             'title' => $request->title,
             'description' => $request->description,
         ]);
 
-        Alert::success('Berhasil', 'Berhasil mengubah data keunggulan!');
-        return redirect()->route('layout.homepage');
+        Alert::success('Berhasil', 'Berhasil mengubah data tentang kami!');
+        return redirect()->route('layout.about');
     }
 
     /**
@@ -122,14 +122,14 @@ class PrivillegeController extends Controller
      */
     public function destroy($id)
     {
-        $privillege = Privillege::where('id', $id)->first();
-        if(File::exists('storage/uploads/privillege/' . $privillege->icon)) {
-            File::delete('storage/uploads/privillege/' . $privillege->icon);
+        $about = About::where('id', $id)->first();
+        if(File::exists('storage/uploads/about/' . $about->icon)) {
+            File::delete('storage/uploads/about/' . $about->icon);
         }
 
-        Privillege::where('id', $id)->delete();
+        About::where('id', $id)->delete();
 
         Alert::success('Berhasil', 'Berhasil menghapus data!');
-        return redirect()->route('layout.homepage');
+        return redirect()->route('layout.about');
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Layout;
 
-use Alert;
 use App\Http\Controllers\Controller;
 use App\Models\Solution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SolutionController extends Controller
 {
@@ -38,7 +38,7 @@ class SolutionController extends Controller
     {
         $request->validate([
             'icon' => 'required|mimes:jpg,png,svg,jpeg',
-            'title' => 'required|max:25',
+            'title' => 'required|max:50',
             'description' => 'required|max:150',
         ]);;
 
@@ -87,7 +87,7 @@ class SolutionController extends Controller
     {
         $request->validate([
             'icon' => 'mimes:jpg,png,svg,jpeg',
-            'title' => 'required|max:25',
+            'title' => 'required|max:50',
             'description' => 'required|max:120',
         ]);
         

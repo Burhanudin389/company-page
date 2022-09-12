@@ -30,9 +30,9 @@
                                 <span class="error-message text-xs italic text-red-500 mt-0.5">{{ $message }}</span>
                             @enderror
                         </div>
-                        {{-- BANK NAME --}}
+                        {{-- PARTNER WEBSITE --}}
                         <div class="relative z-0 w-full mt-5">
-                            <input value="{{ old('partner_name') }}" placeholder="Masukkan nama partner" type="text" name="partner_name" class="@error('partner_name') border-red-500 @enderror border-gray-300 block px-3 py-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 focus:placeholder:text-blue-400"/>
+                            <input value="{{ old('partner_name') }}" placeholder="Masukkan website" type="text" name="partner_name" class="@error('partner_name') border-red-500 @enderror border-gray-300 block px-3 py-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 focus:placeholder:text-blue-400"/>
                             @error('partner_name')
                                 <span class="error-message text-xs italic text-red-500 mt-0.5">{{ $message }}</span>
                             @enderror

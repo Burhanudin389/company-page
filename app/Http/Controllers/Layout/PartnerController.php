@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Layout;
 
-use Alert;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PartnerController extends Controller
 {
@@ -39,7 +39,7 @@ class PartnerController extends Controller
         
         $request->validate([
             'logo' => 'required|mimes:jpg,png,svg,jpeg',
-            'partner_name' => 'required|max:25',
+            'partner_name' => 'required|max:255',
         ]);;
 
         $logoName = Str::random(20) . '.' . $request->logo->getClientOriginalExtension();
@@ -86,7 +86,7 @@ class PartnerController extends Controller
     {
         $request->validate([
             'logo' => 'mimes:jpg,png,svg,jpeg',
-            'partner_name' => 'required|max:25',
+            'partner_name' => 'required|max:255',
         ]);
         
         $partner = Partner::find($id);
